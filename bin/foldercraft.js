@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 
 const args = process.argv.slice(2);
 
@@ -58,7 +59,7 @@ const createFiles = (folderName) => {
 
 	fileNames.forEach((fileName) => {
 		fs.writeFile(
-			`${folderName}/${fileName.file}`,
+			path.join("src", "components", `${folderName}/${fileName.file}`),
 			fileName.data ? fileName.data : "",
 			(err) => {
 				if (err) {
