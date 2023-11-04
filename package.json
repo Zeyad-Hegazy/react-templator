@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"description": "This is a command line interface tool that help to create componet folder in react projects",
 	"bin": {
-		"c": "./index.js"
+		"fc": "./bin/foldercraft.js",
+		"temp": "./bin/templator.js"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
