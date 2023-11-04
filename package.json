@@ -20,7 +20,7 @@
 		"files"
 	],
 	"author": "Zeyad Hegazy",
-	"license": "ISC",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/Zeyad-Hegazy/create-component/issues"
 	},
