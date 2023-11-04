@@ -3,9 +3,8 @@
 	"version": "1.0.0",
 	"description": "This is a command line interface tool that help to create componet folder in react projects",
 	"bin": {
-		"cr-c": "./bin/index.js"
+		"c": "./index.js"
 	},
-	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -24,8 +23,5 @@
 	"bugs": {
 		"url": "https://github.com/Zeyad-Hegazy/create-component/issues"
 	},
-	"homepage": "https://github.com/Zeyad-Hegazy/create-component#readme",
-	"dependencies": {
-		"yargs": "^17.7.2"
-	}
+	"homepage": "https://github.com/Zeyad-Hegazy/create-component#readme"
 }
