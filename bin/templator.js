@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { componentContent } from "../assets/files-content.js";
 
 const createNewSrc = () => {
 	fs.mkdir("src", (err) => {
@@ -36,18 +37,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 		},
 		{
 			file: "App.jsx",
-			data: `import React from "react";
-import "./App.css";
-
-const App = () => {
-	return <div> App </div>;
-};
-
-export default App;
-`,
+			data: componentContent("App"),
 		},
 		{ file: "index.css", data: `` },
-		{ file: "App.css", data: `` },
+		{ file: "App.module.css", data: `` },
 	];
 
 	for (const folder of folders) {
