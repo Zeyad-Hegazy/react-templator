@@ -1,48 +1,35 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+
+import {
+	indexContent,
+	componentContent,
+	testContent,
+} from "../assets/files-content.js";
+
+import searchFolder from "../assets/error-handling/search.js";
 
 const args = process.argv.slice(2);
 
-if (args.length > 1) {
+if (args.length > 1 || args.length === 0) {
 	console.error("Please provide a folder name as a command-line argument.");
 	process.exit(1);
 }
 
-const folderName = args[0];
+const folderName = args[0][0].toUpperCase() + args[0].slice(1);
 
-fs.mkdir(folderName, (err) => {
+if (!searchFolder("./src")) {
+	console.error(
+		'Please provide "components" folder inside "src" folder to create component successfully'
+	);
+	process.exit(1);
+}
+
+fs.mkdirSync(path.join("src", "components", folderName), (err) => {
 	if (err) {
-		console.error(`Failed to create folder "${folderName}":`, err);
-	} else {
-		createFiles(folderName);
+		console.error(`Failed to create file src folder: ${err.message}`);
 	}
 });
-
-const indexContent = (fileName) => {
-	return `import ${fileName} from "./${fileName}.jsx";
-
-export default ${fileName};
-`;
-};
-
-const componentContent = (fileName) => {
-	return `import React from "react";
-import styles from "./${fileName}.module.css";
-
-const ${fileName} = () => {
-	return <div> ${fileName} </div>;
-};
-
-export default ${fileName};
-`;
-};
-
-const testContent = (fileName) => {
-	return `test("${fileName} is working correctly", () => {
-	expect("${fileName}").toBeInTheDocument();
-});
-`;
-};
 
 const createFiles = (folderName) => {
 	const fileNames = [
@@ -58,17 +45,19 @@ const createFiles = (folderName) => {
 	];
 
 	fileNames.forEach((fileName) => {
-		fs.writeFile(
-			path.join("src", "components", `${folderName}/${fileName.file}`),
-			fileName.data ? fileName.data : "",
-			(err) => {
-				if (err) {
-					console.error(
-						`Failed to create file "${folderName}/${fileName.file}":`,
-						err
-					);
-				}
-			}
+		const outputPath = path.join(
+			"src",
+			"components",
+			folderName,
+			fileName.file
 		);
+
+		fs.writeFileSync(outputPath, fileName.data ? fileName.data : "", (err) => {
+			if (err) {
+				console.error(`Failed to create file "${outputPath}": ${err.message}`);
+			}
+		});
 	});
 };
+
+createFiles(folderName);

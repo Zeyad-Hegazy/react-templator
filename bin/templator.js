@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 const createNewSrc = () => {
 	fs.mkdir("src", (err) => {
@@ -71,5 +71,5 @@ export default App;
 	}
 };
 
-fs.rmdirSync("./src", { recursive: true });
+fs.rmSync("./src", { recursive: true });
 createNewSrc();
