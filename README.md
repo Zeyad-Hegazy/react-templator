@@ -24,7 +24,7 @@ yarn global add react-templator
 
 ## Usage
 
-To clean up a Create React App (CRA) project, navigate to your project directory and
+To clean up a Create React App (CRA) project, navigate to your project directory and run the following command:
 
 ```bash
 react-templator temp
