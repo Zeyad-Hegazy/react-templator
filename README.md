@@ -68,6 +68,6 @@ MyComponent/
 └── index.js
 ```
 
-it well automaticlly create it in src/components folder
+it will automatically create it in the src/components folder
 
-**_NOTE:_** you must sure that you have components folder inside src folder to generate component successfully
+**_NOTE:_** You must be sure that you have a components folder inside the src folder to generate components successfully
