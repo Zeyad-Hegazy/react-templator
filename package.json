@@ -25,5 +25,8 @@
 	"bugs": {
 		"url": "https://github.com/Zeyad-Hegazy/create-component/issues"
 	},
-	"homepage": "https://github.com/Zeyad-Hegazy/create-component#readme"
+	"homepage": "https://github.com/Zeyad-Hegazy/create-component#readme",
+	"devDependencies": {
+		"jest": "^29.7.0"
+	}
 }
