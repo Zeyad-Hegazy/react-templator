@@ -1,9 +1,7 @@
-import fs from "fs";
-import path from "path";
+const fs = require("fs");
+const path = require("path");
 
-const targetFolderName = "components";
-
-const searchFolder = (directory) => {
+const searchFolder = (directory, targetFolderName) => {
 	const files = fs.readdirSync(directory);
 
 	for (const file of files) {
@@ -21,4 +19,4 @@ const searchFolder = (directory) => {
 	return false;
 };
 
-export default searchFolder;
+module.exports = searchFolder;

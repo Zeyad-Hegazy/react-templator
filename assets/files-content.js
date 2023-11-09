@@ -1,11 +1,11 @@
-export const indexContent = (fileName) => {
+const indexContent = (fileName) => {
 	return `import ${fileName} from "./${fileName}.jsx";
 
 export default ${fileName};
 `;
 };
 
-export const componentContent = (fileName) => {
+const componentContent = (fileName) => {
 	return `import React from "react";
 import styles from "./${fileName}.module.css";
 
@@ -17,9 +17,15 @@ export default ${fileName};
 `;
 };
 
-export const testContent = (fileName) => {
+const testContent = (fileName) => {
 	return `test("${fileName} is working correctly", () => {
 	expect("${fileName}").toBeInTheDocument();
 });
 `;
+};
+
+module.exports = {
+	indexContent,
+	componentContent,
+	testContent,
 };
