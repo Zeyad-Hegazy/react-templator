@@ -10,7 +10,7 @@ const createFolder = (folderName) => {
 };
 
 const creatFile = (path, data) => {
-	fs.writeFileSync(path, data ? data : "", (err) => {
+	fs.writeFileSync(path, data || "", (err) => {
 		if (err) {
 			console.error(`Failed to create file "${outputPath}": ${err.message}`);
 		}
