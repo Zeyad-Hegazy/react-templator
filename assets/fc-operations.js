@@ -11,7 +11,7 @@ const createFolder = (folderName) => {
 
 const createFiles = (folderName, fileNames) => {
 	fileNames.forEach(({ file, data }) => {
-		const filePath = path.join("./src", folderName, file);
+		const filePath = path.join("src", "components", folderName, file);
 		fs.writeFileSync(filePath, data || "");
 	});
 };
