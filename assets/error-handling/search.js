@@ -1,22 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const searchFolder = (directory, targetFolderName) => {
-	const files = fs.readdirSync(directory);
-
-	for (const file of files) {
-		const filePath = path.join(directory, file);
-		const stat = fs.statSync(filePath);
-
-		if (stat.isDirectory()) {
-			if (file === targetFolderName) {
-				return true;
-			} else {
-				searchFolder(filePath);
-			}
-		}
-	}
-	return false;
+const searchFolder = (basePath, folderName) => {
+	const folderPath = path.join(basePath, folderName);
+	return fs.existsSync(folderPath);
 };
 
 module.exports = searchFolder;

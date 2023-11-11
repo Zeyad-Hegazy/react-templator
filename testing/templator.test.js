@@ -1,24 +1,32 @@
-const fs = require("fs");
-const { createSrc, removeSrc } = require("../assets/templator.js");
+const {
+	removeSrc,
+	createSrc,
+	createFolders,
+	createFiles,
+} = require("../assets/temp-operations.js");
+const projectConfig = require("../assets/project-config.js");
 
-jest.mock("../assets/templator.js", () => ({
+jest.mock("../assets/temp-operations.js", () => ({
 	removeSrc: jest.fn(),
 	createSrc: jest.fn(),
+	createFolders: jest.fn(),
+	createFiles: jest.fn(),
 }));
 
-const srcPath = "./src";
+beforeEach(() => {
+	jest.clearAllMocks();
+});
 
-describe("create src structure", () => {
-	test("src folder deleted", () => {
-		removeSrc.mockImplementation();
-		removeSrc();
-		const isSrcFolderExists = fs.existsSync(srcPath);
-		expect(isSrcFolderExists).toBe(false);
-	});
+test("Setup Project Functions", () => {
+	const { folders, files } = projectConfig;
 
-	// test("src folder created", () => {
-	// 	createSrc();
-	// 	const isSrcFolderExists = fs.existsSync(srcPath);
-	// 	expect(isSrcFolderExists).toBe(true);
-	// });
+	removeSrc();
+	createSrc();
+	createFolders(folders);
+	createFiles(files);
+
+	expect(removeSrc).toHaveBeenCalled();
+	expect(createSrc).toHaveBeenCalled();
+	expect(createFolders).toHaveBeenCalledWith(folders);
+	expect(createFiles).toHaveBeenCalledWith(files);
 });

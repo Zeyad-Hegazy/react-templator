@@ -1,13 +1,10 @@
-const fs = require("fs");
-const path = require("path");
-
 const {
 	indexContent,
 	componentContent,
 	testContent,
 } = require("../assets/files-content.js");
 
-const { createFolder, createFiles } = require("../assets/foldercraft.js");
+const { createFolder, createFiles } = require("../assets/fc-operations.js");
 
 const searchFolder = require("../assets/error-handling/search.js");
 
