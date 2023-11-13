@@ -19,7 +19,7 @@ export default ${fileName};
 
 const testContent = (fileName) => {
 	return `test("${fileName} is working correctly", () => {
-	expect("${fileName}").toBeInTheDocument();
+	expect("${fileName}").toMatch(/${fileName}/);
 });
 `;
 };

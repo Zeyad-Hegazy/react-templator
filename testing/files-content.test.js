@@ -19,6 +19,6 @@ describe("test generate component files content", () => {
 
 	test("testContent generates correct content", () => {
 		const content = testContent(component);
-		expect(content).toContain(`expect("${component}").toBeInTheDocument();`);
+		expect(content).toContain(`expect("${component}").toMatch(/${component}/)`);
 	});
 });
