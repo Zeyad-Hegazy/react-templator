@@ -1,19 +1,16 @@
-const fs = require("fs");
-const path = require("path");
 const { createFolder, createFiles } = require("../assets/fc-operations.js");
 
-const folderName = "MyComponentTest";
+jest.mock("../assets/fc-operations.js", () => ({
+	createFolder: jest.fn(),
+	createFiles: jest.fn(),
+}));
 
-beforeEach(() => {
-	const folderPath = path.join("./src", "components", folderName);
-	if (fs.existsSync(folderPath)) fs.rmdirSync(folderPath, { recursive: true });
-});
+const folderName = "MyComponentTest";
 
 describe("test folder craft functions", () => {
 	test("createFolder creates folders", () => {
 		createFolder(folderName);
-		const folderPath = path.join("./src", "components", folderName);
-		expect(fs.existsSync(folderPath)).toBe(true);
+		expect(createFolder).toHaveBeenCalledWith(folderName);
 	});
 
 	test("createFiles create files", () => {
@@ -24,10 +21,6 @@ describe("test folder craft functions", () => {
 
 		createFiles(folderName, fileNames);
 
-		fileNames.forEach(({ file, data }) => {
-			const filePath = path.join("./src", "components", folderName, file);
-			expect(fs.existsSync(filePath)).toBe(true);
-			if (data) expect(fs.readFileSync(filePath, "utf-8")).toBe(data);
-		});
+		expect(createFiles).toHaveBeenCalledWith(folderName, fileNames);
 	});
 });

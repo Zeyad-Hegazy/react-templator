@@ -17,16 +17,28 @@ beforeEach(() => {
 	jest.clearAllMocks();
 });
 
-test("Setup Project Functions", () => {
-	const { folders, files } = projectConfig;
+describe("Setup Project Functions", () => {
+	test("remove src", () => {
+		removeSrc();
 
-	removeSrc();
-	createSrc();
-	createFolders(folders);
-	createFiles(files);
+		expect(removeSrc).toHaveBeenCalled();
+	});
+	test("create src", () => {
+		createSrc();
+		expect(createSrc).toHaveBeenCalled();
+	});
+	test("create folders", () => {
+		const { folders } = projectConfig;
 
-	expect(removeSrc).toHaveBeenCalled();
-	expect(createSrc).toHaveBeenCalled();
-	expect(createFolders).toHaveBeenCalledWith(folders);
-	expect(createFiles).toHaveBeenCalledWith(files);
+		createFolders(folders);
+
+		expect(createFolders).toHaveBeenCalledWith(folders);
+	});
+	test("create files", () => {
+		const { files } = projectConfig;
+
+		createFiles(files);
+
+		expect(createFiles).toHaveBeenCalledWith(files);
+	});
 });
