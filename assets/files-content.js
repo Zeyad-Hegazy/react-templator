@@ -7,7 +7,7 @@ export default ${fileName};
 
 const componentContent = (fileName) => {
 	return `import React from "react";
-import styles from "./${fileName}.module.css";
+import classes from "./${fileName}.module.css";
 
 const ${fileName} = () => {
 	return <div> ${fileName} </div>;
