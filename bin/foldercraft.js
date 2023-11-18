@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+console.log("Script is running!");
 
 const {
 	indexContent,
@@ -26,18 +27,23 @@ if (!searchFolder("./src", "components")) {
 	process.exit(1);
 }
 
-createFolder(folderName);
+try {
+	createFolder(folderName);
 
-const fileNames = [
-	{ file: `index.js`, data: indexContent(folderName) },
-	{ file: `${folderName}.jsx`, data: componentContent(folderName) },
-	{
-		file: `${folderName}.module.css`,
-	},
-	{
-		file: `${folderName}.test.js`,
-		data: testContent(folderName),
-	},
-];
+	const fileNames = [
+		{ file: `index.js`, data: indexContent(folderName) },
+		{ file: `${folderName}.jsx`, data: componentContent(folderName) },
+		{
+			file: `${folderName}.module.css`,
+		},
+		{
+			file: `${folderName}.test.js`,
+			data: testContent(folderName),
+		},
+	];
 
-createFiles(folderName, fileNames);
+	createFiles(folderName, fileNames);
+} catch (error) {
+	console.error("An error occurred:", error);
+	process.exit(1);
+}
