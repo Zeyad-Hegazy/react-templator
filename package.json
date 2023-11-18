@@ -1,5 +1,5 @@
 {
-	"name": "react-templator",
+	"name": "temprr",
 	"version": "1.0.0",
 	"description": "This is a command line interface tool that help to create componet folder in react projects and clean up annoying src folder and add nice folder structure",
 	"type": "commonjs",
