@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+const fs = require("fs");
+const EventEmmiter = require("events");
 
 const {
 	createSrc,
@@ -9,18 +11,21 @@ const {
 
 const projectConfig = require("../assets/project-config.js");
 
-function setupProject() {
-	const { folders, files } = projectConfig;
+const myEmmeter = new EventEmmiter();
 
-	removeSrc();
-	createSrc();
-	createFolders(folders);
-	createFiles(files);
+if (!fs.existsSync("setupFlag.txt")) {
+	myEmmeter.once("setup", () => {
+		const { folders, files } = projectConfig;
+
+		removeSrc();
+		createSrc();
+		createFolders(folders);
+		createFiles(files);
+
+		fs.writeFileSync("setupFlag.txt", "setup completed");
+	});
+
+	myEmmeter.emit("setup");
+} else {
+	console.log("Setup has already been completed. Exiting...");
 }
-
-setupProject();
-
-// for testing
-module.exports = {
-	setupProject,
-};
