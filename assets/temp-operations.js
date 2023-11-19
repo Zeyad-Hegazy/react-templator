@@ -1,8 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
+const root = path.dirname(require.main.path);
+
 const createSrc = () => {
-	fs.mkdir("src", (err) => {
+	fs.mkdir(path.join(root, "src"), (err) => {
 		if (err) {
 			console.error(`Failed to create folder src:`, err);
 		}
@@ -11,7 +13,7 @@ const createSrc = () => {
 
 const createFolders = (folders) => {
 	for (const folder of folders) {
-		fs.mkdir(path.join("src", folder), (err) => {
+		fs.mkdir(path.join(root, "src", folder), (err) => {
 			if (err) {
 				console.error(`Failed to create folder "${folder}":`, err);
 			}
@@ -22,7 +24,7 @@ const createFolders = (folders) => {
 const createFiles = (files) => {
 	for (const file of files) {
 		fs.writeFile(
-			path.join("src", file.file),
+			path.join(root, "src", file.file),
 			file.data ? file.data : "",
 			(err) => {
 				if (err) {
@@ -34,7 +36,7 @@ const createFiles = (files) => {
 };
 
 const removeSrc = () => {
-	fs.rmSync("./src", { recursive: true });
+	fs.rmSync(path.join(root, "src"), { recursive: true });
 };
 
 module.exports = {
