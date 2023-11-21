@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const root = path.dirname(require.main.path);
+const root = process.cwd();
 
 const createSrc = () => {
 	fs.mkdir(path.join(root, "src"), (err) => {
