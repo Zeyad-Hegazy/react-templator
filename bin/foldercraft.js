@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-console.log("Script is running!");
-
+const path = require("path");
 const {
 	indexContent,
 	componentContent,
@@ -20,7 +19,7 @@ if (args.length > 1 || args.length === 0) {
 
 const folderName = args[0][0].toUpperCase() + args[0].slice(1);
 
-if (!searchFolder("./src", "components")) {
+if (!searchFolder(path.join(process.cwd(), "src"), "components")) {
 	console.error(
 		'Please provide "components" folder inside "src" folder to create component successfully'
 	);
